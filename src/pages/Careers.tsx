@@ -1,99 +1,69 @@
-import { motion } from 'framer-motion'
-import { MapPin, Clock, Users, TrendingUp, Heart, Target } from 'lucide-react'
-import { Button } from '@/components/ui/button'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import { Badge } from '@/components/ui/badge'
-import { Link } from 'react-router-dom'
+import { motion } from "framer-motion";
+import {
+  MapPin,
+  Clock,
+  Users,
+  TrendingUp,
+  Heart,
+  Target,
+  HelpCircle,
+} from "lucide-react";
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Link } from "react-router-dom";
 
 const Careers = () => {
-  const openPositions = [
-    {
-      title: 'Senior Full Stack Developer',
-      department: 'Engineering',
-      location: 'Remote / New York',
-      type: 'Full-time',
-      description: 'Join our engineering team to build scalable web applications and innovative solutions for our clients.',
-      requirements: ['5+ years experience', 'React & Node.js', 'AWS/Cloud experience', 'Agile methodology'],
-      level: 'Senior'
-    },
-    {
-      title: 'Digital Marketing Specialist',
-      department: 'Marketing',
-      location: 'Los Angeles',
-      type: 'Full-time',
-      description: 'Drive digital marketing campaigns and strategies for enterprise clients across multiple industries.',
-      requirements: ['3+ years experience', 'SEO/SEM expertise', 'Analytics tools', 'Content creation'],
-      level: 'Mid-level'
-    },
-    {
-      title: 'HR Business Partner',
-      department: 'Human Resources',
-      location: 'Chicago',
-      type: 'Full-time',
-      description: 'Partner with business leaders to drive HR initiatives and support organizational growth.',
-      requirements: ['5+ years HR experience', 'SHRM certification', 'Strategic thinking', 'Change management'],
-      level: 'Senior'
-    },
-    {
-      title: 'Customer Success Manager',
-      department: 'Customer Success',
-      location: 'Remote',
-      type: 'Full-time',
-      description: 'Ensure client satisfaction and drive adoption of our solutions through proactive relationship management.',
-      requirements: ['3+ years CS experience', 'SaaS background', 'Excellent communication', 'Problem solving'],
-      level: 'Mid-level'
-    },
-    {
-      title: 'Business Analyst',
-      department: 'Operations',
-      location: 'Austin',
-      type: 'Full-time',
-      description: 'Analyze business processes and requirements to optimize operations and drive efficiency improvements.',
-      requirements: ['2+ years experience', 'Data analysis', 'Process mapping', 'Stakeholder management'],
-      level: 'Junior'
-    },
-    {
-      title: 'UX/UI Designer',
-      department: 'Design',
-      location: 'San Francisco',
-      type: 'Full-time',
-      description: 'Create intuitive and engaging user experiences for our digital products and client solutions.',
-      requirements: ['4+ years design experience', 'Figma/Sketch', 'User research', 'Design systems'],
-      level: 'Mid-level'
-    }
-  ]
+
+  const openPositions = []
+  
 
   const benefits = [
     {
       icon: Heart,
-      title: 'Health & Wellness',
-      description: 'Comprehensive medical, dental, and vision insurance plus wellness programs.'
+      title: "Health & Wellness",
+      description:
+        "Comprehensive medical, dental, and vision insurance plus wellness programs.",
     },
     {
       icon: TrendingUp,
-      title: 'Career Growth',
-      description: 'Professional development opportunities, training programs, and clear advancement paths.'
+      title: "Career Growth",
+      description:
+        "Professional development opportunities, training programs, and clear advancement paths.",
     },
     {
       icon: Users,
-      title: 'Team Culture',
-      description: 'Collaborative, inclusive environment with team events and flexible work arrangements.'
+      title: "Team Culture",
+      description:
+        "Collaborative, inclusive environment with team events and flexible work arrangements.",
     },
     {
       icon: Target,
-      title: 'Work-Life Balance',
-      description: 'Flexible hours, remote work options, and generous PTO to maintain healthy balance.'
-    }
-  ]
+      title: "Work-Life Balance",
+      description:
+        "Flexible hours, remote work options, and generous PTO to maintain healthy balance.",
+    },
+  ];
 
   const getLevelColor = (level: string) => {
     switch (level) {
-      case 'Senior': return 'bg-accent/20 text-accent'
-      case 'Mid-level': return 'bg-primary/20 text-primary'
-      case 'Junior': return 'bg-secondary text-secondary-foreground'
-      default: return 'bg-muted text-muted-foreground'
+      case "Senior":
+        return "bg-accent/20 text-accent";
+      case "Mid-level":
+        return "bg-primary/20 text-primary";
+      case "Junior":
+        return "bg-secondary text-secondary-foreground";
+      default:
+        return "bg-muted text-muted-foreground";
     }
-  }
+  };
+
 
   return (
     <div className="min-h-screen pt-16">
@@ -110,12 +80,16 @@ const Careers = () => {
               Join Our <span className="text-accent">Team</span>
             </h1>
             <p className="text-lg md:text-xl text-muted-foreground mb-8">
-              Build your career with a company that values innovation, growth, and making a 
-              meaningful impact. Discover opportunities to work with cutting-edge technology 
-              and talented professionals.
+              Build your career with a company that values innovation, growth,
+              and making a meaningful impact. Discover opportunities to work
+              with cutting-edge technology and talented professionals.
             </p>
-            <Button asChild size="lg" className="bg-accent hover:bg-accent/90 text-accent-foreground">
-              <Link to="#positions">View Open Positions</Link>
+            <Button
+              asChild
+              size="lg"
+              className="bg-accent hover:bg-accent/90 text-accent-foreground"
+            >
+              <Link to={"/careers#positions"} onClick={() => { window.scrollTo(0, 1117); }} >View Open Positions</Link>
             </Button>
           </motion.div>
         </div>
@@ -135,8 +109,9 @@ const Careers = () => {
               Why Work With Us?
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              We believe our people are our greatest asset. That's why we've created an 
-              environment where talented individuals can thrive and grow.
+              We believe our people are our greatest asset. That's why we've
+              created an environment where talented individuals can thrive and
+              grow.
             </p>
           </motion.div>
 
@@ -166,10 +141,10 @@ const Careers = () => {
           {/* Stats */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 bg-primary rounded-2xl p-8 text-primary-foreground">
             {[
-              { number: '500+', label: 'Team Members' },
-              { number: '95%', label: 'Employee Satisfaction' },
-              { number: '25+', label: 'Countries' },
-              { number: '10+', label: 'Years Growing' }
+              { number: "500+", label: "Team Members" },
+              { number: "95%", label: "Employee Satisfaction" },
+              { number: "25+", label: "Countries" },
+              { number: "10+", label: "Years Growing" },
             ].map((stat, index) => (
               <motion.div
                 key={stat.label}
@@ -192,25 +167,29 @@ const Careers = () => {
       </section>
 
       {/* Open Positions */}
-      <section id="positions" className="py-20 bg-secondary/30">
-        <div className="container mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-3xl md:text-4xl font-bold text-primary mb-4">
-              Open Positions
-            </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Explore current opportunities to join our growing team and make an impact.
-            </p>
-          </motion.div>
+       <section id="positions" className="py-20 bg-secondary/30">
+      <div className="container mx-auto px-4">
+        {/* Heading */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          className="text-center mb-16"
+        >
+          <h2 className="text-3xl md:text-4xl font-bold text-primary mb-4">
+            Open Positions
+          </h2>
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            Explore current opportunities to join our growing team and make an
+            impact.
+          </p>
+        </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {openPositions.map((position, index) => (
+        {/* Position Cards Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {openPositions && openPositions.length > 0 ? (
+            openPositions.map((position, index) => (
               <motion.div
                 key={position.title}
                 initial={{ opacity: 0, y: 50 }}
@@ -218,7 +197,7 @@ const Careers = () => {
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
               >
-                <Card className="h-full shadow-business hover:shadow-accent transition-all duration-300 border-border hover:border-accent/50">
+                <Card className="h-full shadow-business hover:shadow-accent transition-all duration-300 border border-border hover:border-accent/50">
                   <CardHeader>
                     <div className="flex items-start justify-between mb-2">
                       <div>
@@ -233,7 +212,8 @@ const Careers = () => {
                         {position.level}
                       </Badge>
                     </div>
-                    <div className="flex flex-wrap gap-2 text-sm text-muted-foreground">
+
+                    <div className="flex flex-wrap gap-4 text-sm text-muted-foreground mt-2">
                       <div className="flex items-center space-x-1">
                         <MapPin className="w-4 h-4" />
                         <span>{position.location}</span>
@@ -244,31 +224,58 @@ const Careers = () => {
                       </div>
                     </div>
                   </CardHeader>
+
                   <CardContent>
                     <p className="text-muted-foreground mb-4">
                       {position.description}
                     </p>
-                    <div className="mb-6">
-                      <h4 className="font-semibold text-primary mb-2">Requirements:</h4>
-                      <ul className="space-y-1">
-                        {position.requirements.map((req, idx) => (
-                          <li key={idx} className="flex items-center text-sm text-muted-foreground">
-                            <div className="w-1.5 h-1.5 bg-accent rounded-full mr-2 flex-shrink-0" />
-                            {req}
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
+
+                    {/* Requirements */}
+                    {position.requirements && position.requirements.length > 0 && (
+                      <div className="mb-6">
+                        <h4 className="font-semibold text-primary mb-2">
+                          Requirements:
+                        </h4>
+                        <ul className="space-y-1">
+                          {position.requirements.map((req, idx) => (
+                            <li
+                              key={idx}
+                              className="flex items-center text-sm text-muted-foreground"
+                            >
+                              <div className="w-1.5 h-1.5 bg-accent rounded-full mr-2 flex-shrink-0" />
+                              {req}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
+
                     <Button className="w-full bg-accent hover:bg-accent/90 text-accent-foreground">
                       Apply Now
                     </Button>
                   </CardContent>
                 </Card>
               </motion.div>
-            ))}
-          </div>
+            ))
+          ) : (
+            
+              <div className="h-full w-[76vw] flex flex-col items-center justify-center ">
+                <div className="py-11 flex flex-col items-center text-center">
+                  <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mb-6">
+                    <HelpCircle className="w-8 h-8 text-gray-500" />
+                  </div>
+                  <div className="text-xl text-gray-500 text-muted-foreground mb-2">
+                    No open positions at the moment
+                  </div>
+                  <div className="text-gray-400 text-sm">
+                    Check back later or send us your resume.
+                  </div>
+                </div>
+              </div>
+          )}
         </div>
-      </section>
+      </div>
+    </section>
 
       {/* CTA Section */}
       <section className="py-20 bg-gradient-to-r from-primary to-primary/90 text-primary-foreground">
@@ -284,22 +291,24 @@ const Careers = () => {
               Don't See the Right Position?
             </h2>
             <p className="text-lg text-primary-foreground/90 mb-8">
-              We're always looking for talented individuals to join our team. 
-              Send us your resume and let us know how you'd like to contribute to our mission.
+              We're always looking for talented individuals to join our team.
+              Send us your resume and let us know how you'd like to contribute
+              to our mission.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button asChild size="lg" className="bg-accent hover:bg-accent/90 text-accent-foreground">
-                <Link to="/contact">Send Your Resume</Link>
-              </Button>
-              <Button asChild variant="outline" size="lg" className="border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary">
-                <Link to="/contact">Contact HR Team</Link>
+              <Button
+                asChild
+                size="lg"
+                className="bg-accent hover:bg-accent/90 text-accent-foreground"
+              >
+                <Link to="/contact#hr-contact">Send Your Resume</Link>
               </Button>
             </div>
           </motion.div>
         </div>
       </section>
     </div>
-  )
-}
+  );
+};
 
-export default Careers
+export default Careers;
