@@ -28,10 +28,11 @@ const Header = () => {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2">
-            <div className="w-8 h-8 bg-accent rounded-lg flex items-center justify-center">
+            {/* <div className="w-8 h-8 bg-accent rounded-lg flex items-center justify-center">
               <span className="text-accent-foreground font-bold text-lg">B</span>
             </div>
-            <span className="text-xl font-bold text-primary">BusinessPro</span>
+            <span className="text-xl font-bold text-primary">BusinessPro</span> */}
+            <img src="../public/logo3.png" alt="BusinessPro Logo" className="w-[9rem]" />
           </Link>
 
           {/* Desktop Navigation */}

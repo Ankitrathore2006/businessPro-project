@@ -26,10 +26,7 @@ const Footer = () => {
           {/* Company Info */}
           <div className="space-y-4">
             <div className="flex items-center space-x-2">
-              <div className="w-8 h-8 bg-accent rounded-lg flex items-center justify-center">
-                <span className="text-accent-foreground font-bold text-lg">B</span>
-              </div>
-              <span className="text-xl font-bold text-primary-foreground">BusinessPro</span>
+              <img src="../public/logo1.png" alt="BusinessPro Logo" className="w-[17rem]" />
             </div>
             <p className="text-primary-foreground/80 text-sm">
               Leading provider of professional business services, delivering innovative solutions 
