@@ -187,9 +187,9 @@ const Careers = () => {
         </motion.div>
 
         {/* Position Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {openPositions && openPositions.length > 0 ? (
-            openPositions.map((position, index) => (
+        {openPositions && openPositions.length > 0 ? (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {openPositions.map((position, index) => (
               <motion.div
                 key={position.title}
                 initial={{ opacity: 0, y: 50 }}
@@ -256,10 +256,11 @@ const Careers = () => {
                   </CardContent>
                 </Card>
               </motion.div>
-            ))
+            ))}
+             </div>
           ) : (
             
-              <div className="h-full w-[76vw] flex flex-col items-center justify-center ">
+              <div className="h-full w-full flex flex-col items-center justify-center ">
                 <div className="py-11 flex flex-col items-center text-center">
                   <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mb-6">
                     <HelpCircle className="w-8 h-8 text-gray-500" />
@@ -273,7 +274,7 @@ const Careers = () => {
                 </div>
               </div>
           )}
-        </div>
+       
       </div>
     </section>
 

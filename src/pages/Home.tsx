@@ -14,83 +14,11 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import ServiceCard from "@/components/ServiceCard";
 import TestimonialSlider from "@/components/TestimonialSlider";
+import { servicesData } from "@/data/servicesData";
 
 const Home = () => {
-  const services = [
-    {
-      title: "IT Services",
-      description: "Comprehensive technology solutions for modern businesses",
-      features: [
-        "Cloud Infrastructure",
-        "Cybersecurity Solutions",
-        "Software Development",
-        "System Integration",
-        "Technical Support",
-      ],
-      icon: Monitor,
-    },
-    {
-      title: "Digital Marketing",
-      description: "Strategic digital presence and marketing campaigns",
-      features: [
-        "SEO Optimization",
-        "Social Media Management",
-        "Content Marketing",
-        "PPC Advertising",
-        "Analytics & Reporting",
-      ],
-      icon: Megaphone,
-    },
-    {
-      title: "HR & Recruitment",
-      description: "Expert talent acquisition and human resource management",
-      features: [
-        "Talent Sourcing",
-        "Executive Search",
-        "HR Consulting",
-        "Employee Training",
-        "Performance Management",
-      ],
-      icon: Users,
-    },
-    {
-      title: "Customer Support",
-      description: "24/7 professional customer service solutions",
-      features: [
-        "Multi-channel Support",
-        "Live Chat Services",
-        "Help Desk Solutions",
-        "Customer Success Programs",
-        "Quality Assurance",
-      ],
-      icon: Headphones,
-    },
-    {
-      title: "Business Process Automation",
-      description: "Streamline operations with intelligent automation",
-      features: [
-        "Workflow Automation",
-        "Process Optimization",
-        "Integration Solutions",
-        "Data Analytics",
-        "ROI Tracking",
-      ],
-      icon: BarChart3,
-    },
-    {
-      title: "Sentiment Marketing",
-      description:
-        "Data-driven marketing strategies based on customer sentiment",
-      features: [
-        "Sentiment Analysis",
-        "Brand Monitoring",
-        "Consumer Insights",
-        "Reputation Management",
-        "Market Research",
-      ],
-      icon: TrendingUp,
-    },
-  ];
+
+  const services = servicesData.slice(0, 6);
 
   const stats = [
     { icon: Users, value: "500+", label: "Happy Clients" },
@@ -283,7 +211,7 @@ const testimonials = [
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {services.map((service, index) => (
               <ServiceCard
-                key={service.title}
+                key={service.id}
                 {...service}
                 delay={index * 0.1}
               />

@@ -2,8 +2,10 @@ import { motion } from 'framer-motion'
 import { LucideIcon } from 'lucide-react'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
+import { Link } from 'react-router-dom'
 
 interface ServiceCardProps {
+  slug: string
   title: string
   description: string
   features: string[]
@@ -11,7 +13,7 @@ interface ServiceCardProps {
   delay?: number
 }
 
-const ServiceCard = ({ title, description, features, icon: Icon, delay = 0 }: ServiceCardProps) => {
+const ServiceCard = ({ slug, title, description, features, icon: Icon, delay = 0 }: ServiceCardProps) => {
   return (
     <motion.div
       initial={{ opacity: 0, y: 50 }}
@@ -43,10 +45,11 @@ const ServiceCard = ({ title, description, features, icon: Icon, delay = 0 }: Se
             ))}
           </ul>
           <Button 
+            asChild
             variant="outline" 
             className="w-full border-accent text-accent hover:bg-accent hover:text-accent-foreground transition-all duration-300"
           >
-            Learn More
+           <Link to={`/services/${slug}`}>Learn More</Link>
           </Button>
         </CardContent>
       </Card>

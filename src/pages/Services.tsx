@@ -1,91 +1,12 @@
 import { motion } from 'framer-motion'
-import { Monitor, Megaphone, Users, Headphones, BarChart3, TrendingUp, CheckCircle } from 'lucide-react'
+import { CheckCircle } from 'lucide-react'
 import ServiceCard from '@/components/ServiceCard'
 import { Button } from '@/components/ui/button'
 import { Link } from 'react-router-dom'
+import { servicesData } from '@/data/servicesData'
 
 const Services = () => {
-  const services = [
-    {
-      title: 'IT Services',
-      description: 'Comprehensive technology solutions designed to modernize your infrastructure and enhance operational efficiency.',
-      features: [
-        'Cloud Infrastructure Management',
-        'Cybersecurity & Data Protection',
-        'Custom Software Development',
-        'System Integration & Migration',
-        '24/7 Technical Support',
-        'Disaster Recovery Planning'
-      ],
-      icon: Monitor,
-    },
-    {
-      title: 'Digital Marketing',
-      description: 'Strategic digital marketing campaigns that drive engagement, increase brand visibility, and generate qualified leads.',
-      features: [
-        'Search Engine Optimization (SEO)',
-        'Pay-Per-Click (PPC) Advertising',
-        'Social Media Management',
-        'Content Marketing Strategy',
-        'Email Marketing Campaigns',
-        'Analytics & Performance Tracking'
-      ],
-      icon: Megaphone,
-    },
-    {
-      title: 'HR & Recruitment',
-      description: 'Professional human resource solutions to help you attract, retain, and develop top talent for your organization.',
-      features: [
-        'Executive Search & Recruitment',
-        'Talent Acquisition Strategy',
-        'HR Policy Development',
-        'Employee Training Programs',
-        'Performance Management Systems',
-        'Compensation & Benefits Consulting'
-      ],
-      icon: Users,
-    },
-    {
-      title: 'Customer Support',
-      description: 'World-class customer service solutions that enhance customer satisfaction and build lasting relationships.',
-      features: [
-        '24/7 Multi-channel Support',
-        'Live Chat & Phone Support',
-        'Help Desk Management',
-        'Customer Success Programs',
-        'Quality Assurance & Training',
-        'CRM Integration & Management'
-      ],
-      icon: Headphones,
-    },
-    {
-      title: 'Business Process Automation',
-      description: 'Intelligent automation solutions that streamline operations, reduce costs, and improve productivity.',
-      features: [
-        'Workflow Automation Design',
-        'Process Optimization Analysis',
-        'RPA Implementation',
-        'Data Integration Solutions',
-        'Performance Monitoring',
-        'ROI Measurement & Reporting'
-      ],
-      icon: BarChart3,
-    },
-    {
-      title: 'Sentiment Marketing',
-      description: 'Data-driven marketing strategies based on real-time customer sentiment analysis and market insights.',
-      features: [
-        'Sentiment Analysis & Monitoring',
-        'Brand Reputation Management',
-        'Consumer Behavior Insights',
-        'Market Research & Analysis',
-        'Crisis Communication Management',
-        'Competitive Intelligence'
-      ],
-      icon: TrendingUp,
-    },
-  ]
-
+  
   const benefits = [
     'Proven track record with 500+ successful projects',
     'Industry-certified professionals and experts',
@@ -137,9 +58,9 @@ const Services = () => {
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-            {services.map((service, index) => (
+            {servicesData.map((service, index) => (
               <ServiceCard
-                key={service.title}
+                key={service.id}
                 {...service}
                 delay={index * 0.1}
               />
