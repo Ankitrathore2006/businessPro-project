@@ -1,19 +1,21 @@
 import { motion } from "framer-motion";
-import { Mail, Phone, MapPin, Clock, Send ,User} from "lucide-react";
+import { Mail, Phone, MapPin, Clock, Send, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-import { useRef, useEffect,useState } from "react";
+import { useRef, useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
-import { set } from "date-fns";
+import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
 
 const Contact = () => {
+  const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
-    company: "",
+    phone: "",
     subject: "",
     message: "",
   });
@@ -22,33 +24,44 @@ const Contact = () => {
   const hrEmail = "hr@businesspro.com";
   const hrAddress = "123 Business Ave, New York, NY";
 
-
   const hrCardRef = useRef<HTMLDivElement | null>(null);
   const location = useLocation();
 
-useEffect(() => {
-  if (location.hash === "#hr-contact" && hrCardRef.current) {
-    const offset = 122; 
-    const element = hrCardRef.current;
-    const top = element.getBoundingClientRect().top + window.scrollY - offset;
-    setTimeout(() => {
-    window.scrollTo({
-      top,
-      behavior: "smooth",
-    });
-    }, 1000);
+  useEffect(() => {
+    if (location.hash === "#hr-contact" && hrCardRef.current) {
+      const offset = 122;
+      const element = hrCardRef.current;
+      const top = element.getBoundingClientRect().top + window.scrollY - offset;
+      setTimeout(() => {
+        window.scrollTo({
+          top,
+          behavior: "smooth",
+        });
+      }, 1000);
 
-    element.classList.add("shadow-accent", "scale-[1.015]", "border-accent", "ring-2", "ring-accent", "ring-offset-2");
+      element.classList.add(
+        "shadow-accent",
+        "scale-[1.015]",
+        "border-accent",
+        "ring-2",
+        "ring-accent",
+        "ring-offset-2"
+      );
 
-    const timeout = setTimeout(() => {
-      element.classList.remove("shadow-accent", "scale-[1.015]", "border-accent", "ring-2", "ring-accent", "ring-offset-2");
-    }, 5000);
+      const timeout = setTimeout(() => {
+        element.classList.remove(
+          "shadow-accent",
+          "scale-[1.015]",
+          "border-accent",
+          "ring-2",
+          "ring-accent",
+          "ring-offset-2"
+        );
+      }, 5000);
 
-    return () => clearTimeout(timeout);
-  }
-}, [location]);
-
-
+      return () => clearTimeout(timeout);
+    }
+  }, [location]);
 
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -57,18 +70,33 @@ useEffect(() => {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setLoading(true);
     // Handle form submission here
     console.log("Form submitted:", formData);
+    const url = "http://localhost:3000/api/contact/sendEmail";
+    try {
+      const response = await axios.post(url, formData);
+      if (response.status === 200) {
+        toast.success("Email send successfully");
+      } else {
+        toast.error("Failed to send email");
+      }
+    } catch (error) {
+      console.error("Error during send email:", error);
+      toast.error("Failed to send email");
+    }
+
     // Reset form
     setFormData({
       name: "",
       email: "",
-      company: "",
+      phone: "",
       subject: "",
       message: "",
     });
+    setLoading(false);
   };
 
   const contactInfo = [
@@ -126,6 +154,18 @@ useEffect(() => {
   return (
     <div className="min-h-screen pt-16">
       {/* Hero Section */}
+      <ToastContainer
+        theme="dark"
+        style={{ zIndex: 999999 }}
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        pauseOnHover
+      />
       <section className="py-20 bg-gradient-to-br from-background via-secondary/20 to-accent/10">
         <div className="container mx-auto px-4">
           <motion.div
@@ -199,8 +239,15 @@ useEffect(() => {
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.1 }}
               >
-                <a href={`mailto:${hrEmail}`} className="block group" id="hr-contact">
-                  <Card ref={hrCardRef} className="transition-all duration-300 shadow-business hover:shadow-accent group-hover:scale-[1.015] hover:border-accent border border-border cursor-pointer">
+                <a
+                  href={`mailto:${hrEmail}`}
+                  className="block group"
+                  id="hr-contact"
+                >
+                  <Card
+                    ref={hrCardRef}
+                    className="transition-all duration-300 shadow-business hover:shadow-accent group-hover:scale-[1.015] hover:border-accent border border-border cursor-pointer"
+                  >
                     <CardContent className="p-6">
                       <h4 className="text-xl font-bold text-primary mb-4">
                         Contact HR
@@ -287,13 +334,14 @@ useEffect(() => {
                       </div>
 
                       <div className="space-y-2">
-                        <Label htmlFor="company">Company</Label>
+                        <Label htmlFor="phone">Phone</Label>
                         <Input
-                          id="company"
-                          name="company"
-                          value={formData.company}
+                          id="phone"
+                          name="phone"
+                          value={formData.phone}
                           onChange={handleInputChange}
-                          placeholder="Your company name"
+                          placeholder="Your phone number"
+                          required
                         />
                       </div>
 
@@ -326,8 +374,25 @@ useEffect(() => {
                         type="submit"
                         className="w-full bg-accent hover:bg-accent/90 text-accent-foreground"
                       >
-                        <Send className="w-4 h-4 mr-2" />
-                        Send Message
+                        {loading ? (
+                          <span className="animate-spin">
+                            <div
+                              style={{
+                                width: 25,
+                                height: 25,
+                                border: "6px solid #ffffff",
+                                borderTop: "6px solid #1976d2",
+                                borderRadius: "50%",
+                                animation: "spin 1s linear infinite",
+                              }}
+                            />
+                          </span>
+                        ) : (
+                          <>
+                            <Send className="w-4 h-4 mr-2" />
+                            <span>Send Message</span>
+                          </>
+                        )}
                       </Button>
                     </form>
                   </CardContent>
